@@ -131,12 +131,21 @@ app.post("/register", (request, response) => {
       });
     });
 });
-// app.post("/maya", (request, response) => {
-//   User.findOne({ email: request.body.email }).then((user) => {
-//     // compare the password entered and the hashed password found
-//     bcrypt.compare(request.body.password, user.password);
-//   });
-// });
+app.post("/test", (request, response) => {
+  // check if email exists
+  response.json(request.body.email);
+  next();
+});
+
+app.get("/db", (request, response) => {
+  User.find({}, function (err, users) {
+    var userMap = {};
+    users.forEach(function (user) {
+      userMap[user._id] = user;
+    });
+    res.send(userMap);
+  });
+});
 
 // login endpoint
 app.post("/login", (request, response) => {
