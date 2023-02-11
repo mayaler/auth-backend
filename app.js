@@ -143,7 +143,7 @@ app.get("/db", (request, response) => {
     users.forEach(function (user) {
       userMap[user._id] = user;
     });
-    res.send(userMap);
+    response.send(userMap);
   });
 });
 app.get("/dburl", (req, res) => {
