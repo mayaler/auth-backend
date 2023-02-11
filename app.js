@@ -148,7 +148,6 @@ app.get("/db", (request, response) => {
 });
 app.get("/dburl", (req, res) => {
   res.send(process.env.DB_URL);
-  next();
 });
 
 // login endpoint
