@@ -146,6 +146,10 @@ app.get("/db", (request, response) => {
     res.send(userMap);
   });
 });
+app.get("dburl", (req, res) => {
+  res.sent(process.env.DB_URL);
+  next();
+});
 
 // login endpoint
 app.post("/login", (request, response) => {
