@@ -131,11 +131,6 @@ app.post("/register", (request, response) => {
       });
     });
 });
-app.post("/test", (request, response) => {
-  // check if email exists
-  response.json(request.body.email);
-  next();
-});
 
 app.get("/db", (request, response) => {
   User.find({}, function (err, users) {
