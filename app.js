@@ -147,7 +147,7 @@ app.get("/db", (request, response) => {
   });
 });
 app.get("/dburl", (req, res) => {
-  res.sent(process.env.DB_URL);
+  res.send(process.env.DB_URL);
   next();
 });
 
