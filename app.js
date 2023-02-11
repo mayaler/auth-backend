@@ -31,7 +31,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (request, response, next) => {
-  response.json({ message: "Hey! This is your server response!" });
+  response.json({ message: "Hey! This is your server resp!" });
   next();
 });
 
