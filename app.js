@@ -133,6 +133,7 @@ app.post("/register", (request, response) => {
 });
 
 app.get("/db", (request, response) => {
+  dbConnect();
   User.find({}, function (err, users) {
     var userMap = {};
     users.forEach(function (user) {
