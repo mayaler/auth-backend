@@ -9,7 +9,7 @@ const dbConnect = require("./db/dbConnect");
 const User = require("./db/userModel");
 const auth = require("./auth");
 const Book = require("./db/bookModel");
-const 
+
 // execute database connection
 dbConnect();
 
@@ -38,34 +38,32 @@ app.get("/", (request, response, next) => {
 
 // bookRegister endpoint
 app.post("/bookRegister", (request, response) => {
- 
-      const book = new Book({
-        title: request.body.title,
-        author: request.body.author,
-        summary: request.body.summary,
-        isbn: request.body.isbn,
-        genre: request.body.genre,
-       
-      });
+  const book = new Book({
+    title: request.body.title,
+    author: request.body.author,
+    summary: request.body.summary,
+    isbn: request.body.isbn,
+    genre: request.body.genre,
+  });
 
-      // save the new user
-      book
-        .save()
-        // return success if the new user is added to the database successfully
-        .then((result) => {
-          response.status(201).send({
-            message: "Book Created Successfully",
-            result,
-          });
-        })
-        // catch error if the new user wasn't added successfully to the database
-        .catch((error) => {
-          response.status(500).send({
-            message: "Error creating book",
-            error,
-          });
-        });
+  // save the new user
+  book
+    .save()
+    // return success if the new user is added to the database successfully
+    .then((result) => {
+      response.status(201).send({
+        message: "Book Created Successfully",
+        result,
+      });
     })
+    // catch error if the new user wasn't added successfully to the database
+    .catch((error) => {
+      response.status(500).send({
+        message: "Error creating book",
+        error,
+      });
+    });
+});
 
 // register endpoint
 app.post("/register", (request, response) => {
