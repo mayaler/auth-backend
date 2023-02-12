@@ -9,6 +9,7 @@ const dbConnect = require("./db/dbConnect");
 const User = require("./db/userModel");
 const auth = require("./auth");
 const Book = require("./db/bookModel");
+const Author = require("./db/authorModel");
 
 // execute database connection
 dbConnect();
@@ -34,6 +35,33 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (request, response, next) => {
   response.json({ message: "Hey! This is your server resp!" });
   next();
+});
+
+// authorRegister endpoint
+app.post("/authorregister", (request, response) => {
+  const author = new Author({
+    first_name: request.body.first_name,
+    family_name: request.body.family_name,
+  });
+
+  // save the new book
+  author
+    .save()
+    // return success if the new author is added to the database successfully
+    .then((result) => {
+      response.status(201).send({
+        message: "Author Created Successfully",
+        result,
+      });
+    })
+
+    // catch error if the new user wasn't added successfully to the database
+    .catch((error) => {
+      response.status(500).send({
+        message: "Error creating author",
+        error,
+      });
+    });
 });
 
 // bookRegister endpoint
