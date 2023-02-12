@@ -37,7 +37,7 @@ app.get("/", (request, response, next) => {
 });
 
 // bookRegister endpoint
-app.post("/bookRegister", (request, response) => {
+app.post("/bookregister", (request, response) => {
   const book = new Book({
     title: request.body.title,
     author: request.body.author,
@@ -46,10 +46,10 @@ app.post("/bookRegister", (request, response) => {
     genre: request.body.genre,
   });
 
-  // save the new user
+  // save the new book
   book
     .save()
-    // return success if the new user is added to the database successfully
+    // return success if the new book is added to the database successfully
     .then((result) => {
       response.status(201).send({
         message: "Book Created Successfully",
