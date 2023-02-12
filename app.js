@@ -196,8 +196,9 @@ app.get("/free-endpoint", (request, response) => {
 app.get("/auth-endpoint", auth, (request, response) => {
   response.send({ message: "You are authorized to access me" });
 });
+
 app.get("/find", (req, res) => {
-  book.find({}, (err, result) => {
+  Book.find({}, (err, result) => {
     if (err) {
       console.log(err);
     } else {
