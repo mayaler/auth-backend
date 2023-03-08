@@ -65,13 +65,24 @@ app.post("/authorregister", (request, response) => {
 });
 
 // bookRegister endpoint
-app.post("/bookregister", (request, response) => {
+app.post("/bookregister", async (request, response) => {
+  let authotExist = await Author.findOne({
+    first_name: request.body.firstName,
+    family_name: request.body.lastName,
+  });
+  response.status(500).send({
+    message: authotExist,
+  });
+
+  return;
+
   const book = new Book({
     title: request.body.title,
     author: request.body.author,
     summary: request.body.summary,
     isbn: request.body.isbn,
-    genre: request.body.genre,
+    // genre: request.body.genre,
+    image: request.body.url,
   });
 
   // save the new book
