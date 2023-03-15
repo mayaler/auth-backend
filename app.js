@@ -79,7 +79,9 @@ app.post("/bookregister", async (request, response) => {
     });
 
     // save the new book
-    let result = await author.save();
+    let newAuthor = await author.save();
+    console.log(newAuthor);
+    authorId = newAuthor._id;
     // return success if the new author is added to the database successfully
   } else {
     authorId = authotExist._id;
