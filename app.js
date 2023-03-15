@@ -74,8 +74,8 @@ app.post("/bookregister", async (request, response) => {
   let authorId;
   if (!authotExist) {
     const author = new Author({
-      first_name: request.body.first_name,
-      family_name: request.body.family_name,
+      first_name: request.body.firstName,
+      family_name: request.body.lastName,
     });
 
     // save the new book
