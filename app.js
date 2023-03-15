@@ -71,15 +71,15 @@ app.post("/bookregister", async (request, response) => {
     message: "Author Created Successfully",
   });
 
-  // let authotExist = await Author.findOne({
-  //   first_name: request.body.firstName,
-  //   family_name: request.body.lastName,
-  // });
-  // response.status(500).send({
-  //   message: authotExist,
-  // });
+  let authotExist = await Author.findOne({
+    first_name: request.body.firstName,
+    family_name: request.body.lastName,
+  });
+  response.status(200).send({
+    message: authotExist,
+  });
 
-  // return;
+  return;
 
   // const book = new Book({
   //   title: request.body.title,
