@@ -71,9 +71,6 @@ app.post("/bookregister", async (request, response) => {
     first_name: request.body.firstName,
     family_name: request.body.lastName,
   });
-  response.status(200).send({
-    message: authotExist,
-  });
   let authorId;
   if (!authotExist) {
     const author = new Author({
