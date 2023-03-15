@@ -74,35 +74,45 @@ app.post("/bookregister", async (request, response) => {
   response.status(200).send({
     message: authotExist,
   });
+  let authorId;
+  if (!authotExist) {
+    const author = new Author({
+      first_name: request.body.first_name,
+      family_name: request.body.family_name,
+    });
 
-  return;
+    // save the new book
+    let result = await author.save();
+    // return success if the new author is added to the database successfully
+  } else {
+    authorId = authotExist._id;
+  }
+  const book = new Book({
+    title: request.body.title,
+    author: request.body.author,
+    summary: request.body.summary,
+    isbn: request.body.isbn,
+    // genre: request.body.genre,
+    image: request.body.url,
+  });
 
-  // const book = new Book({
-  //   title: request.body.title,
-  //   author: request.body.author,
-  //   summary: request.body.summary,
-  //   isbn: request.body.isbn,
-  //   // genre: request.body.genre,
-  //   image: request.body.url,
-  // });
-
-  // // save the new book
-  // book
-  //   .save()
-  //   // return success if the new book is added to the database successfully
-  //   .then((result) => {
-  //     response.status(201).send({
-  //       message: "Book Created Successfully",
-  //       result,
-  //     });
-  //   })
-  //   // catch error if the new user wasn't added successfully to the database
-  //   .catch((error) => {
-  //     response.status(500).send({
-  //       message: "Error creating book",
-  //       error,
-  //     });
-  //   });
+  // save the new book
+  book
+    .save()
+    // return success if the new book is added to the database successfully
+    .then((result) => {
+      response.status(201).send({
+        message: "Book Created Successfully",
+        result,
+      });
+    })
+    // catch error if the new user wasn't added successfully to the database
+    .catch((error) => {
+      response.status(500).send({
+        message: "Error creating book",
+        error,
+      });
+    });
 });
 
 // register endpoint
