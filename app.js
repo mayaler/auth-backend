@@ -70,43 +70,43 @@ app.post("/bookregister", async (request, response) => {
   response.status(201).send({
     message: "Author Created Successfully",
   });
-  return;
-  let authotExist = await Author.findOne({
-    first_name: request.body.firstName,
-    family_name: request.body.lastName,
-  });
-  response.status(500).send({
-    message: authotExist,
-  });
 
-  return;
+  // let authotExist = await Author.findOne({
+  //   first_name: request.body.firstName,
+  //   family_name: request.body.lastName,
+  // });
+  // response.status(500).send({
+  //   message: authotExist,
+  // });
 
-  const book = new Book({
-    title: request.body.title,
-    author: request.body.author,
-    summary: request.body.summary,
-    isbn: request.body.isbn,
-    // genre: request.body.genre,
-    image: request.body.url,
-  });
+  // return;
 
-  // save the new book
-  book
-    .save()
-    // return success if the new book is added to the database successfully
-    .then((result) => {
-      response.status(201).send({
-        message: "Book Created Successfully",
-        result,
-      });
-    })
-    // catch error if the new user wasn't added successfully to the database
-    .catch((error) => {
-      response.status(500).send({
-        message: "Error creating book",
-        error,
-      });
-    });
+  // const book = new Book({
+  //   title: request.body.title,
+  //   author: request.body.author,
+  //   summary: request.body.summary,
+  //   isbn: request.body.isbn,
+  //   // genre: request.body.genre,
+  //   image: request.body.url,
+  // });
+
+  // // save the new book
+  // book
+  //   .save()
+  //   // return success if the new book is added to the database successfully
+  //   .then((result) => {
+  //     response.status(201).send({
+  //       message: "Book Created Successfully",
+  //       result,
+  //     });
+  //   })
+  //   // catch error if the new user wasn't added successfully to the database
+  //   .catch((error) => {
+  //     response.status(500).send({
+  //       message: "Error creating book",
+  //       error,
+  //     });
+  //   });
 });
 
 // register endpoint
