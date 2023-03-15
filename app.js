@@ -67,6 +67,10 @@ app.post("/authorregister", (request, response) => {
 
 // bookRegister endpoint
 app.post("/bookregister", async (request, response) => {
+  response.status(201).send({
+    message: "Author Created Successfully",
+  });
+  return;
   let authotExist = await Author.findOne({
     first_name: request.body.firstName,
     family_name: request.body.lastName,
