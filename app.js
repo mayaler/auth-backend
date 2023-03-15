@@ -89,11 +89,11 @@ app.post("/bookregister", async (request, response) => {
   }
   const book = new Book({
     title: request.body.title,
-    author: request.body.author,
+    author: authorId,
     summary: request.body.summary,
     isbn: request.body.isbn,
     // genre: request.body.genre,
-    image: request.body.url,
+    // image: request.body.url,
   });
 
   // save the new book
